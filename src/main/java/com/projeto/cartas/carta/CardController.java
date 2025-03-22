@@ -24,4 +24,9 @@ public class CardController {
     public void registerNewCard(@RequestBody Card card){
         cardService.addNewCard(card);
     }
+
+    @DeleteMapping(path = "{cardId}")
+    public void deleteCard(@PathVariable("cardId") Long cardId){
+        cardService.deleteCard(cardId);
+    }
 }

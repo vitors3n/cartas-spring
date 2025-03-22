@@ -26,4 +26,12 @@ public class CardService {
         }
         cardRepository.save(card);
     }
+
+    public void deleteCard(Long cardId) {
+        boolean exists = cardRepository.existsById(cardId);
+        if (!exists) {
+            throw new IllegalStateException("Carta com id " + cardId + " não existe.");
+        }
+        cardRepository.deleteById(cardId);
+    }
 }
