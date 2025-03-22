@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 @Entity
 @Table
 public class Card {
+
     @Id
     @SequenceGenerator(
             name = "card_sequence",
@@ -35,6 +36,10 @@ public class Card {
         this.front = front;
         this.back = back;
         this.reviews = reviews;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getFront() {
