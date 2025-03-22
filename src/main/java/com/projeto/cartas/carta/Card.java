@@ -18,8 +18,15 @@ public class Card {
             generator = "card_sequence"
     )
     private Long id;
+
+    @Lob
+    @Column(columnDefinition = "TEXT")
     private String front;
+
+    @Lob
+    @Column(columnDefinition = "TEXT")
     private String back;
+
     private Integer reviews;
 
     public Card() {
