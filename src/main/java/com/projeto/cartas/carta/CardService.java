@@ -1,5 +1,8 @@
 package com.projeto.cartas.carta;
 
+import com.projeto.cartas.deck.Deck;
+import com.projeto.cartas.deck.DeckRepository;
+import com.projeto.cartas.deck.DeckService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,10 +12,12 @@ import java.util.Optional;
 @Service
 public class CardService {
     private final CardRepository cardRepository;
+    private final DeckRepository deckRepository;
 
     @Autowired
-    public CardService(CardRepository cardRepository) {
+    public CardService(CardRepository cardRepository, DeckRepository deckRepository) {
         this.cardRepository = cardRepository;
+        this.deckRepository = deckRepository;
     }
 
     public List<Card> getCards() {
@@ -24,6 +29,13 @@ public class CardService {
         if (cardOptional.isPresent()){
             throw new IllegalStateException("Card já existe");
         }
+
+        Optional<Deck> deckOptional = deckRepository.findById(card.getDeck());
+
+        if (deckOptional.isEmpty()){
+            throw new IllegalStateException("Deck não encontrado");
+        }
+
         cardRepository.save(card);
     }
 

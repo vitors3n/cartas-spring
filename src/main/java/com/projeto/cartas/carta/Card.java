@@ -1,5 +1,6 @@
 package com.projeto.cartas.carta;
 
+import com.projeto.cartas.deck.Deck;
 import jakarta.persistence.*;
 
 
@@ -19,23 +20,26 @@ public class Card {
     )
     private Long id;
 
-    @Lob
     @Column(columnDefinition = "TEXT")
     private String front;
 
-    @Lob
     @Column(columnDefinition = "TEXT")
     private String back;
 
     private Integer reviews;
 
+    @ManyToOne
+    @JoinColumn(name = "deck_id")
+    private Deck deck;
+
     public Card() {
     }
 
-    public Card(String front, String back, Integer reviews) {
+    public Card(String front, String back, Integer reviews, Deck deck) {
         this.front = front;
         this.back = back;
         this.reviews = reviews;
+        this.deck = deck;
     }
 
     public Card(Long id, String front, String back, Integer reviews) {
@@ -71,5 +75,13 @@ public class Card {
 
     public void setReviews(Integer reviews) {
         this.reviews = reviews;
+    }
+
+    public Long getDeck() {
+        return deck.getId();
+    }
+
+    public void setDeck(Deck deck) {
+        this.deck = deck;
     }
 }
