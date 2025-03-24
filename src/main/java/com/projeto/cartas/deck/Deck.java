@@ -30,6 +30,10 @@ public class Deck {
     public Deck() {
     }
 
+    public Deck(String name) {
+        this.name = name;
+    }
+
     public Deck(String name, Long id) {
         this.name = name;
         this.id = id;

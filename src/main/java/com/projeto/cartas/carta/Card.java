@@ -42,6 +42,12 @@ public class Card {
         this.deck = deck;
     }
 
+    public Card(String front, String back, Integer reviews) {
+        this.front = front;
+        this.back = back;
+        this.reviews = reviews;
+    }
+
     public Card(Long id, String front, String back, Integer reviews) {
         this.id = id;
         this.front = front;
