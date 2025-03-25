@@ -8,7 +8,7 @@ import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:5173")
 @RestController
-@RequestMapping(path = "api/v1/deck")
+@RequestMapping(path = "api/v1/decks")
 public class DeckController {
     private final DeckService deckService;
 

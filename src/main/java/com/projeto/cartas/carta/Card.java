@@ -1,5 +1,8 @@
 package com.projeto.cartas.carta;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.projeto.cartas.deck.Deck;
 import jakarta.persistence.*;
 
@@ -9,15 +12,8 @@ import jakarta.persistence.*;
 public class Card {
 
     @Id
-    @SequenceGenerator(
-            name = "card_sequence",
-            sequenceName = "card_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "card_sequence"
-    )
+    @SequenceGenerator(name = "card_sequence", sequenceName = "card_sequence", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "card_sequence")
     private Long id;
 
     @Column(columnDefinition = "TEXT")
@@ -30,6 +26,7 @@ public class Card {
 
     @ManyToOne
     @JoinColumn(name = "deck_id")
+    @JsonBackReference
     private Deck deck;
 
     public Card() {
@@ -83,8 +80,9 @@ public class Card {
         this.reviews = reviews;
     }
 
-    public Long getDeck() {
-        return deck.getId();
+    public Deck getDeck() {
+        //return deck.getId();
+        return deck;
     }
 
     public void setDeck(Deck deck) {

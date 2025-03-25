@@ -30,7 +30,7 @@ public class CardService {
             throw new IllegalStateException("Card já existe");
         }
 
-        Optional<Deck> deckOptional = deckRepository.findById(card.getDeck());
+        Optional<Deck> deckOptional = deckRepository.findById(card.getDeck().getId());
 
         if (deckOptional.isEmpty()){
             throw new IllegalStateException("Deck não encontrado");

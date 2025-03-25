@@ -17,7 +17,7 @@ public class DeckConfig {
             Deck SCRUM = new Deck("SCRUM");
             Deck TDD = new Deck("TDD");
 
-            Card card1 = new Card("Qual a função do Scrum Master?","Resposta", 0, SCRUM);
+            Card card1 = new Card("Quais são os eventos do SCRUM?","Resposta", 0, SCRUM);
             Card card2 = new Card("O que é um Product Backlog?","Resposta", 0, SCRUM);
 
             List<Card> cardsSCRUM = List.of(card1,card2);

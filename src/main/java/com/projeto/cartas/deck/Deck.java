@@ -1,6 +1,8 @@
 package com.projeto.cartas.deck;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.projeto.cartas.carta.Card;
 import jakarta.persistence.*;
 
@@ -12,19 +14,13 @@ import java.util.List;
 public class Deck {
 
     @Id
-    @SequenceGenerator(
-            name = "deck_sequence",
-            sequenceName = "deck_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "deck_sequence"
-    )
+    @SequenceGenerator(name = "deck_sequence", sequenceName = "deck_sequence", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "deck_sequence")
     private Long id;
     private String name;
 
     @OneToMany(mappedBy = "deck", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<Card> cards = new ArrayList<>();
 
     public Deck() {
