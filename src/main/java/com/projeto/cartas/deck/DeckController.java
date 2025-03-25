@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:5173")
 @RestController
@@ -15,6 +16,11 @@ public class DeckController {
     @Autowired
     public DeckController(DeckService deckService){
         this.deckService = deckService;
+    }
+
+    @GetMapping("/{deckId}")
+    public Optional<Deck> getDeck(@PathVariable Long deckId) {
+        return deckService.getDeckbyId(deckId);
     }
 
     @GetMapping

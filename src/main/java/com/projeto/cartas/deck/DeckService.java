@@ -19,6 +19,10 @@ public class DeckService {
         return deckRepository.findAll();
     }
 
+    public Optional<Deck> getDeckbyId(Long deckId){
+        return deckRepository.findById(deckId);
+    }
+
     public void addNewDeck(Deck deck) {
         Optional<Deck> deckOptional = deckRepository.findDeckByName(deck.getName());
         if (deckOptional.isPresent()){
