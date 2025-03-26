@@ -2,6 +2,7 @@ package com.projeto.cartas.deck;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,12 +21,13 @@ public class DeckController {
 
     @GetMapping("/{deckId}")
     public Optional<Deck> getDeck(@PathVariable Long deckId) {
-        return deckService.getDeckbyId(deckId);
+        return deckService.getDeckById(deckId);
     }
 
     @GetMapping
-    public List<Deck> getDecks(){
-        return deckService.getDecks();
+    public ResponseEntity<List<Deck>> getDecks(){
+        List<Deck> decks = deckService.getDecks();
+        return ResponseEntity.ok(decks);
     }
 
     @PostMapping

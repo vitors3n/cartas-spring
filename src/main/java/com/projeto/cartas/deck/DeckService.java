@@ -23,11 +23,11 @@ public class DeckService {
         return deckRepository.findAll();
     }
 
-    public Optional<Deck> getDeckbyId(Long deckId){
+    public Optional<Deck> getDeckById(Long deckId){
         Optional<Deck> deck = deckRepository.findById(deckId);
 
         if (deck.isEmpty()){
-           throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Deck não encontrado.");
+           throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Deck com id " + deckId + " não encontrado.");
         }
 
         return deckRepository.findById(deckId);
@@ -46,9 +46,11 @@ public class DeckService {
     public void deleteDeck(Long deckId){
         boolean deckExists = deckRepository.existsById(deckId);
 
-        if(!deckExists){
-            throw new IllegalStateException("Deck com id " + deckId + " não existe");
+        if(!deckExists) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Deck com id " + deckId + " não encontrado.");
         }
+
         deckRepository.deleteById(deckId);
+        throw new ResponseStatusException(HttpStatus.NO_CONTENT, "Deck com id " + deckId + " foi deletado.");
     }
 }
